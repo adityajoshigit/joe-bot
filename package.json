@@ -4,8 +4,8 @@
   "description": "Job Tracker Application",
   "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
+    "server": "node backend/server.js",
+    "devStart": "nodemon backend/server.js",
     "client": "cd app && npm run start"
   },
   "author": "",
