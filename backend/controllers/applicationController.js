@@ -1,8 +1,10 @@
 const asyncHandler = require('express-async-handler');
+const Application = require('../models/applicationModel');
 
 const get = asyncHandler(async (req, res) => {
-  const applns = [{ applicationId: '1', dateTime: '', companyName: 'Some LLC', position: 'Software Developer' }];
-  res.status(200).json({ applications: applns, success: true });
+  const allApplications = await Application.find();
+
+  res.status(200).json({ applications: allApplications, success: true });
 });
 
 const post = asyncHandler(async (req, res) => {

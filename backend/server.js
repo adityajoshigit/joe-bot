@@ -1,7 +1,10 @@
 const express = require('express');
-const dotenv = require('dotenv').config;
+const dotenv = require('dotenv').config();
 const port = process.env.PORT || 5000;
 const applicationRoutes = require('./routes/applicationRoutes');
+const connectToDB = require('./config/db');
+
+connectToDB();
 
 const app = express();
 app.use(express.json());
