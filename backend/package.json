@@ -2,10 +2,10 @@
   "name": "joe-bot",
   "version": "1.0.0",
   "description": "Job Tracker Application",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "server": "node backend/server.js",
-    "devStart": "nodemon backend/server.js",
+    "server": "node server.js",
+    "devStart": "nodemon server.js",
     "client": "cd app && npm run start"
   },
   "author": "",
