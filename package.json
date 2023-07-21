@@ -1,0 +1,26 @@
+{
+  "name": "joe-bot",
+  "version": "1.0.0",
+  "description": "Job Tracker Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adityajoshigit/joe-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adityajoshigit/joe-bot/issues"
+  },
+  "homepage": "https://github.com/adityajoshigit/joe-bot#readme",
+  "dependencies": {
+    "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3"
+  }
+}
