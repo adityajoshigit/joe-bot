@@ -1,37 +1,34 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 
 const filter = createFilterOptions();
 
-
-
 function StatusInput() {
-
   const statusMetadata = [
     {
       name: "0",
-      title: "Applied"
+      title: "Applied",
     },
     {
       name: "1",
-      title: "Pending"
+      title: "Pending",
     },
     {
       name: "2",
-      title: "Under Review"
+      title: "Under Review",
     },
     {
       name: "3",
-      title: "In Progress"
+      title: "In Progress",
     },
     {
       name: "4",
-      title: "Accepted"
+      title: "Accepted",
     },
     {
       name: "5",
-      title: "Rejected"
+      title: "Rejected",
     },
   ];
 
@@ -40,14 +37,14 @@ function StatusInput() {
   const onChange = (event, newValue) => {
     console.log(event);
     console.log(newValue);
-    if (typeof newValue === 'string') {
+    if (typeof newValue === "string") {
       setValue({
         title: newValue,
       });
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
       setValue({
-        ...newValue
+        ...newValue,
       });
     } else {
       setValue(newValue);
@@ -60,11 +57,11 @@ function StatusInput() {
     const { inputValue } = params;
     // Suggest the creation of a new value
     const isExisting = options.some((option) => inputValue === option.title);
-    if (inputValue !== '' && !isExisting) {
+    if (inputValue !== "" && !isExisting) {
       filtered.push({
         inputValue,
         title: `Add "${inputValue}"`,
-        id: "___"
+        id: "___",
       });
     }
 
@@ -74,7 +71,7 @@ function StatusInput() {
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
     console.log(option);
-    if (typeof option === 'string') {
+    if (typeof option === "string") {
       return option;
     }
     // Add "xxx" option created dynamically
@@ -86,15 +83,13 @@ function StatusInput() {
   };
 
   const renderOption = (props, option) => {
-    return (
-      <li {...props}>{option.title}</li>
-    );
+    return <li {...props}>{option.title}</li>;
   };
 
   const renderInput = (params) => (
-    <TextField 
-      {...params} 
-      sx={{width: '100%', minHeight: '3.5rem'}}
+    <TextField
+      {...params}
+      sx={{ width: "100%", minHeight: "3.5rem" }}
       label="What's the status?"
     />
   );
@@ -115,7 +110,6 @@ function StatusInput() {
       renderInput={(params) => renderInput(params)}
     />
   );
-
 }
 
 export default StatusInput;
