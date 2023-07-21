@@ -2,5 +2,5 @@
   "editor.formatOnSave": true,
   "prettier.configPath": ".prettierrc",
   "editor.tabSize": 2,
-  "editor.renderWhitespace": "all"
+  "editor.renderWhitespace": "trailing"
 }

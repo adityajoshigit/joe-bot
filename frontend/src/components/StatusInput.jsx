@@ -4,12 +4,42 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
 const filter = createFilterOptions();
 
+
+
 function StatusInput() {
 
+  const statusMetadata = [
+    {
+      name: "0",
+      title: "Applied"
+    },
+    {
+      name: "1",
+      title: "Pending"
+    },
+    {
+      name: "2",
+      title: "Under Review"
+    },
+    {
+      name: "3",
+      title: "In Progress"
+    },
+    {
+      name: "4",
+      title: "Accepted"
+    },
+    {
+      name: "5",
+      title: "Rejected"
+    },
+  ];
 
   const [value, setValue] = React.useState(null);
 
   const onChange = (event, newValue) => {
+    console.log(event);
+    console.log(newValue);
     if (typeof newValue === 'string') {
       setValue({
         title: newValue,
@@ -17,7 +47,7 @@ function StatusInput() {
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
       setValue({
-        title: newValue.inputValue,
+        ...newValue
       });
     } else {
       setValue(newValue);
@@ -34,6 +64,7 @@ function StatusInput() {
       filtered.push({
         inputValue,
         title: `Add "${inputValue}"`,
+        id: "___"
       });
     }
 
@@ -42,6 +73,7 @@ function StatusInput() {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
+    console.log(option);
     if (typeof option === 'string') {
       return option;
     }
@@ -53,10 +85,18 @@ function StatusInput() {
     return option.title;
   };
 
-  const renderOption = (props, option) => <li {...props}>{option.title}</li>;
+  const renderOption = (props, option) => {
+    return (
+      <li {...props}>{option.title}</li>
+    );
+  };
 
   const renderInput = (params) => (
-    <TextField {...params} label="Free solo with text demo" />
+    <TextField 
+      {...params} 
+      sx={{width: '100%', minHeight: '3.5rem'}}
+      label="What's the status?"
+    />
   );
 
   return (
@@ -65,18 +105,17 @@ function StatusInput() {
       clearOnBlur
       handleHomeEndKeys
       freeSolo
-      id="StatusInputSelectList"
+      id="companyNameSelectList"
       value={value}
       onChange={(event, newValue) => onChange(event, newValue)}
       filterOptions={(options, params) => filterOptions(options, params)}
-      options={top100Films}
+      options={statusMetadata}
       getOptionLabel={(option) => getOptionLabel(option)}
       renderOption={(props, option) => renderOption(props, option)}
-      sx={{ width: 300 }}
       renderInput={(params) => renderInput(params)}
     />
   );
 
-};
+}
 
 export default StatusInput;
