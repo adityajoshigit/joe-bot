@@ -13,22 +13,22 @@ function ApplicationInputForm() {
   return (
     <>
       <Grid container px={2} py={2}>
-        <Grid item xs={12} md={6} bgcolor={"cyan"} p={1}>
+        <Grid item xs={12} md={12} bgcolor={"cyan"} p={1}>
           <Box p={1}>
             <CompanyNameInput />
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} bgcolor={"yellow"} p={1}>
-          <Box p={1}>
-            <StatusInput />
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6} bgcolor={"cyan"} p={1}>
+        <Grid item xs={12} md={12} bgcolor={"cyan"} p={1}>
           <Box p={1}>
             <JobPositionInput />
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} bgcolor={"yellow"} p={1}>
+        <Grid item xs={12} md={12} bgcolor={"yellow"} p={1}>
+          <Box p={1}>
+            <StatusInput />
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={12} bgcolor={"yellow"} p={1}>
           <Box p={1}>
             <ApplicationDateInput />
           </Box>
