@@ -2,41 +2,32 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 
-const filter = createFilterOptions({
-  ignoreCase: true,
-});
+const filter = createFilterOptions();
 
-function StatusInput() {
-  const statusMetadata = [
+function JobPositionInput() {
+  const jobPositionMetadata = [
     {
-      name: "0",
-      title: "Applied",
+      name: "123",
+      title: "Software Developer",
     },
     {
-      name: "1",
-      title: "Pending",
+      name: "567",
+      title: "Backend Developer",
     },
     {
-      name: "2",
-      title: "Under Review",
+      name: "333",
+      title: "Software Engineer",
     },
     {
-      name: "3",
-      title: "In Progress",
+      name: "444",
+      title: "Frontend Engineer",
     },
     {
-      name: "4",
-      title: "Accepted",
-    },
-    {
-      name: "5",
-      title: "Rejected",
+      name: "555",
+      title: "Salesforce Developer",
     },
   ];
-  const defaultStatusValue = {
-    name: "0",
-    title: "Applied",
-  };
+
   const [value, setValue] = React.useState(null);
 
   const onChange = (event, newValue) => {
@@ -95,7 +86,7 @@ function StatusInput() {
     <TextField
       {...params}
       sx={{ width: "100%", minHeight: "3.5rem" }}
-      label="What's the status?"
+      label="What job position did you apply for?"
     />
   );
 
@@ -105,16 +96,16 @@ function StatusInput() {
       clearOnBlur
       handleHomeEndKeys
       freeSolo
-      id="companyNameSelectList"
+      id="jobPositionNameSelectList"
+      value={value}
       onChange={(event, newValue) => onChange(event, newValue)}
       filterOptions={(options, params) => filterOptions(options, params)}
-      options={statusMetadata}
+      options={jobPositionMetadata}
       getOptionLabel={(option) => getOptionLabel(option)}
       renderOption={(props, option) => renderOption(props, option)}
       renderInput={(params) => renderInput(params)}
-      defaultValue={defaultStatusValue}
     />
   );
 }
 
-export default StatusInput;
+export default JobPositionInput;

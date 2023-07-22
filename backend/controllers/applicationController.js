@@ -1,5 +1,5 @@
-const asyncHandler = require('express-async-handler');
-const Application = require('../models/applicationModel');
+const asyncHandler = require("express-async-handler");
+const Application = require("../models/applicationModel");
 
 const getAllApplications = asyncHandler(async (req, res) => {
   const allApplications = await Application.find();
@@ -9,9 +9,10 @@ const getAllApplications = asyncHandler(async (req, res) => {
 
 const postNewApplication = asyncHandler(async (req, res) => {
   if (req.body.companyName && req.body.status) {
-
   } else {
-    res.status(500).json({ message: 'companyName or status or ', success: false });
+    res
+      .status(500)
+      .json({ message: "companyName or status or ", success: false });
   }
 });
 
@@ -24,5 +25,5 @@ const updateApplication = asyncHandler(async (req, res) => {
 module.exports = {
   getAllApplications,
   postNewApplication,
-  updateApplication
+  updateApplication,
 };

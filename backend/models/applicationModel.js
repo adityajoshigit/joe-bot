@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const applicationSchema = mongoose.Schema({
   applicationId: {
     type: String,
-    required: [true, 'applicationId Missing'],
+    required: [true, "applicationId Missing"],
   },
   companyId: {
     type: String,
-    required: [true, 'companyId Missing'],
+    required: [true, "companyId Missing"],
   },
   dateTime: {
     type: String,
@@ -15,12 +15,12 @@ const applicationSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    required: [true, 'status Missing'],
+    required: [true, "status Missing"],
   },
   userId: {
     type: String,
-    required: [true, 'userId Missing'],
-  }
+    required: [true, "userId Missing"],
+  },
 });
 
-module.exports = mongoose.model('Application', applicationSchema);
+module.exports = mongoose.model("Application", applicationSchema);

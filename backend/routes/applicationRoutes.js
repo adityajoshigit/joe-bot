@@ -1,17 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const applicationController = require('../controllers/applicationController')
+const applicationController = require("../controllers/applicationController");
 
-const {
-  getAllApplications,
-  postNewApplication,
-  updateApplication,
-} = {
-  ...applicationController
+const { getAllApplications, postNewApplication, updateApplication } = {
+  ...applicationController,
 };
 
-router.get('/all', getAllApplications);
-router.post('/new', postNewApplication);
-router.put('/update', updateApplication);
+router.get("/all", getAllApplications);
+router.post("/new", postNewApplication);
+router.put("/update", updateApplication);
 
 module.exports = router;
