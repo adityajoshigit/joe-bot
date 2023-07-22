@@ -1,49 +1,29 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 const filter = createFilterOptions();
 
-function JobPositionInput() {
-  const jobPositionMetadata = [
-    {
-      name: "123",
-      title: "Software Developer",
-    },
-    {
-      name: "567",
-      title: "Backend Developer",
-    },
-    {
-      name: "333",
-      title: "Software Engineer",
-    },
-    {
-      name: "444",
-      title: "Frontend Engineer",
-    },
-    {
-      name: "555",
-      title: "Salesforce Developer",
-    },
-  ];
+function JobPositionInput(props) {
+  const { jobPositionList, setJobPosition } = React.useContext(
+    ApplicationFormContext
+  );
 
   const [value, setValue] = React.useState(null);
 
   const onChange = (event, newValue) => {
-    console.log(event);
-    console.log(newValue);
     if (typeof newValue === "string") {
-      setValue({
+      setJobPosition({
         title: newValue,
       });
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setValue({
+      setJobPosition({
         ...newValue,
       });
     } else {
-      setValue(newValue);
+      setJobPosition(newValue);
     }
   };
 
@@ -66,7 +46,6 @@ function JobPositionInput() {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
-    console.log(option);
     if (typeof option === "string") {
       return option;
     }
@@ -91,20 +70,21 @@ function JobPositionInput() {
   );
 
   return (
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="jobPositionNameSelectList"
-      value={value}
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={jobPositionMetadata}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-    />
+    jobPositionList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="jobPositionNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={jobPositionList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+      />
+    )
   );
 }
 

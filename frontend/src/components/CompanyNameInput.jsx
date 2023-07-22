@@ -1,37 +1,25 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 const filter = createFilterOptions();
 
-function CompanyNameInput() {
-  const companyMetadata = [
-    {
-      name: "123",
-      title: "Meta",
-    },
-    {
-      name: "567",
-      title: "Amazon",
-    },
-  ];
-
-  const [value, setValue] = React.useState(null);
+function CompanyNameInput(props) {
+  const { companyList, setCompany } = React.useContext(ApplicationFormContext);
 
   const onChange = (event, newValue) => {
-    console.log(event);
-    console.log(newValue);
     if (typeof newValue === "string") {
-      setValue({
+      setCompany({
         title: newValue,
       });
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setValue({
+      setCompany({
         ...newValue,
       });
     } else {
-      setValue(newValue);
+      setCompany(newValue);
     }
   };
 
@@ -54,7 +42,6 @@ function CompanyNameInput() {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
-    console.log(option);
     if (typeof option === "string") {
       return option;
     }
@@ -79,20 +66,21 @@ function CompanyNameInput() {
   );
 
   return (
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="companyNameSelectList"
-      value={value}
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={companyMetadata}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-    />
+    companyList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="companyNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={companyList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+      />
+    )
   );
 }
 

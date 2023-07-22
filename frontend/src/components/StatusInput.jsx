@@ -1,58 +1,33 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 const filter = createFilterOptions({
   ignoreCase: true,
 });
 
-function StatusInput() {
-  const statusMetadata = [
-    {
-      name: "0",
-      title: "Applied",
-    },
-    {
-      name: "1",
-      title: "Pending",
-    },
-    {
-      name: "2",
-      title: "Under Review",
-    },
-    {
-      name: "3",
-      title: "In Progress",
-    },
-    {
-      name: "4",
-      title: "Accepted",
-    },
-    {
-      name: "5",
-      title: "Rejected",
-    },
-  ];
-  const defaultStatusValue = {
-    name: "0",
-    title: "Applied",
-  };
+function StatusInput(props) {
+  const { statusList, setApplicationStatus } = React.useContext(
+    ApplicationFormContext
+  );
+
+  const defaultStatusValue = statusList?.[0];
+
   const [value, setValue] = React.useState(null);
 
   const onChange = (event, newValue) => {
-    console.log(event);
-    console.log(newValue);
     if (typeof newValue === "string") {
-      setValue({
+      setApplicationStatus({
         title: newValue,
       });
     } else if (newValue && newValue.inputValue) {
       // Create a new value from the user input
-      setValue({
+      setApplicationStatus({
         ...newValue,
       });
     } else {
-      setValue(newValue);
+      setApplicationStatus(newValue);
     }
   };
 
@@ -75,7 +50,6 @@ function StatusInput() {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
-    console.log(option);
     if (typeof option === "string") {
       return option;
     }
@@ -100,20 +74,22 @@ function StatusInput() {
   );
 
   return (
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="companyNameSelectList"
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={statusMetadata}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-      defaultValue={defaultStatusValue}
-    />
+    statusList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="companyNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={statusList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+        defaultValue={defaultStatusValue}
+      />
+    )
   );
 }
 
