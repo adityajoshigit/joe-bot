@@ -8,13 +8,18 @@ export const ApplicationFormContextProvider = ({
   
   const today = new Date();
   const defaultDateValue = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  
+  const [companyList, setComapanyList] = React.useState(null);
+  const [jobPositionList, setPositionList] = React.useState(null);
+  const [statusList, setStatusList] = React.useState(null);
+  
   const [newApplicationRecord, setNewApplicationRecord] = React.useState({
     date: defaultDateValue,
   });
 
   const metadataLoader = {
     getCompanies: () => {
-      const p = new Promise([
+      const p = new Promise((resolve) => resolve([
         {
           name: "123",
           title: "Meta",
@@ -23,11 +28,11 @@ export const ApplicationFormContextProvider = ({
           name: "567",
           title: "Amazon",
         },
-      ]);
-      
+      ]));
+      return p;
     },
-    getSatusValues: () => {
-      const p = new Promise([
+    getStatusValues: () => {
+      const p = new Promise((resolve) => resolve([
         {
           name: "0",
           title: "Applied",
@@ -52,12 +57,12 @@ export const ApplicationFormContextProvider = ({
           name: "5",
           title: "Rejected",
         },
-      ]);
-      
+      ]));
+      return p;
     },
 
     getJobPositions: () => {
-      const p = new Promise([
+      const p = new Promise((resolve) => resolve([
         {
           name: "123",
           title: "Software Developer",
@@ -78,7 +83,8 @@ export const ApplicationFormContextProvider = ({
           name: "555",
           title: "Salesforce Developer",
         },
-      ]);
+      ]));
+      return p;
     }
   };
 
@@ -117,13 +123,30 @@ export const ApplicationFormContextProvider = ({
     },
   };
 
+  React.useEffect(() => {
+    const fetchMetadata = () => {
+      metadataLoader.getCompanies().then((data) => setComapanyList(data));
+
+      metadataLoader.getJobPositions().then((data) => setPositionList(data));
+
+      metadataLoader.getStatusValues().then((data) => setStatusList(data));
+    };
+
+    fetchMetadata();
+
+    return () => {};
+  }, []);
+
   return (
     <ApplicationFormContext.Provider value={{
       setCompany: formFieldChangeHandler.handleSetCompany,
       setJobPosition: formFieldChangeHandler.handleSetJobPosition,
       setApplicationDate: formFieldChangeHandler.handleSetDate,
       setApplicationStatus: formFieldChangeHandler.handleSetStatus,
-      defaultDateValue
+      defaultDateValue,
+      companyList,
+      jobPositionList,
+      statusList
     }}>
     {children}
     </ApplicationFormContext.Provider>

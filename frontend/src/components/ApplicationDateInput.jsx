@@ -1,17 +1,13 @@
 import React from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
+import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 function ApplicationDateInput(props) {
-  const today = new Date();
-  const defaultDateValue = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
-  const [selectedDateValue, setSelectedDateValue] = React.useState(null);
+  const { defaultDateValue, setApplicationDate } = React.useContext(ApplicationFormContext);
 
   const dateChangeHandler = (newValue) => {
-    console.log(newValue);
-    setSelectedDateValue(new Date(newValue.$d).getFullYear());
+    setApplicationDate(new Date(newValue.$d));
   };
 
   return (
