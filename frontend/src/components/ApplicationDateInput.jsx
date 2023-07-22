@@ -2,7 +2,10 @@ import React from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-function ApplicationDateInput() {
+function ApplicationDateInput({
+  fireChangeEvent,
+  defaultValue
+}) {
   const today = new Date();
   const defaultDateValue = `${today.getFullYear()}-${
     today.getMonth() + 1
@@ -21,6 +24,7 @@ function ApplicationDateInput() {
         format="DD-MMM-YYYY"
         defaultValue={dayjs(defaultDateValue)}
         onChange={(newValue) => dateChangeHandler(newValue)}
+        label="When did you apply?"
       />
     </>
   );

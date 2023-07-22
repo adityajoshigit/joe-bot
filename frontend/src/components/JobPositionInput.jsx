@@ -4,7 +4,10 @@ import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 
 const filter = createFilterOptions();
 
-function JobPositionInput() {
+function JobPositionInput({
+  fireChangeEvent,
+  defaultValue
+}) {
   const jobPositionMetadata = [
     {
       name: "123",

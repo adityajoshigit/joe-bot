@@ -6,8 +6,46 @@ import JobPositionInput from "./JobPositionInput";
 import ApplicationDateInput from "./ApplicationDateInput";
 
 function ApplicationInputForm() {
+  const [newApplicationRecord, setNewApplicationRecord] = React.useState({
+
+  });
   const saveRecord = (event) => {
     console.log("Record Needs To Be Saved!!!");
+  };
+
+  const formFieldChangeHandlers = {
+    handleSetCompany : (companyObj) => {
+      if (companyObj) {
+        setNewApplicationRecord({
+          ...newApplicationRecord,
+          company: companyObj
+        })
+      }
+    },
+    handleSetJobPosition : (positionObj) => {
+      if (positionObj) {
+        setNewApplicationRecord({
+          ...newApplicationRecord,
+          position: positionObj
+        })
+      }
+    },
+    handleSetDate : (dateValueObj) => {
+      if (dateValueObj) {
+        setNewApplicationRecord({
+          ...newApplicationRecord,
+          date: dateValueObj
+        })
+      }
+    },
+    handleSetStatus : (statusObj) => {
+      if (statusObj) {
+        setNewApplicationRecord({
+          ...newApplicationRecord,
+          status: statusObj
+        })
+      }
+    },
   };
 
   return (
@@ -15,22 +53,22 @@ function ApplicationInputForm() {
       <Grid container px={2} py={2}>
         <Grid item xs={12} md={12} bgcolor={"cyan"} p={1}>
           <Box p={1}>
-            <CompanyNameInput />
+            <CompanyNameInput fireChangeEvent={formFieldChangeHandlers.handleSetCompany} />
           </Box>
         </Grid>
         <Grid item xs={12} md={12} bgcolor={"cyan"} p={1}>
           <Box p={1}>
-            <JobPositionInput />
+            <JobPositionInput fireChangeEvent={formFieldChangeHandlers.handleSetJobPosition} />
           </Box>
         </Grid>
         <Grid item xs={12} md={12} bgcolor={"yellow"} p={1}>
           <Box p={1}>
-            <StatusInput />
+            <StatusInput fireChangeEvent={formFieldChangeHandlers.handleSetStatus} />
           </Box>
         </Grid>
         <Grid item xs={12} md={12} bgcolor={"yellow"} p={1}>
           <Box p={1}>
-            <ApplicationDateInput />
+            <ApplicationDateInput fireChangeEvent={formFieldChangeHandlers.handleSetDate} />
           </Box>
         </Grid>
         <Grid item xs={12} md={12} bgcolor={"gray"} p={1}>
