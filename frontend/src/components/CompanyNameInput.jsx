@@ -66,20 +66,21 @@ function CompanyNameInput(props) {
   );
 
   return (
-    companyList &&
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="companyNameSelectList"
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={companyList}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-    />
+    companyList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="companyNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={companyList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+      />
+    )
   );
 }
 

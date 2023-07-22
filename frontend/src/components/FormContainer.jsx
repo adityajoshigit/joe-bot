@@ -1,14 +1,13 @@
-import React from 'react'
-import Container from '@mui/material/Container';
-import ApplicationInputForm from './ApplicationInputForm'
+import React from "react";
+import Container from "@mui/material/Container";
+import ApplicationInputForm from "./ApplicationInputForm";
 
 function FormContainer() {
   return (
     <Container maxWidth="lg">
-      <ApplicationInputForm  />
+      <ApplicationInputForm />
     </Container>
-
-  )
+  );
 }
 
-export default FormContainer
+export default FormContainer;

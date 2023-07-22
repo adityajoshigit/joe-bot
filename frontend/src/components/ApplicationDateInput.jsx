@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 function ApplicationDateInput(props) {
-  const { defaultDateValue, setApplicationDate } = React.useContext(ApplicationFormContext);
+  const { defaultDateValue, setApplicationDate } = React.useContext(
+    ApplicationFormContext
+  );
 
   const dateChangeHandler = (newValue) => {
     setApplicationDate(new Date(newValue.$d));

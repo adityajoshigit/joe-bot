@@ -8,8 +8,9 @@ const filter = createFilterOptions({
 });
 
 function StatusInput(props) {
-  
-  const { statusList, setApplicationStatus } = React.useContext(ApplicationFormContext);
+  const { statusList, setApplicationStatus } = React.useContext(
+    ApplicationFormContext
+  );
 
   const defaultStatusValue = statusList?.[0];
 
@@ -73,21 +74,22 @@ function StatusInput(props) {
   );
 
   return (
-    statusList &&
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="companyNameSelectList"
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={statusList}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-      defaultValue={defaultStatusValue}
-    />
+    statusList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="companyNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={statusList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+        defaultValue={defaultStatusValue}
+      />
+    )
   );
 }
 

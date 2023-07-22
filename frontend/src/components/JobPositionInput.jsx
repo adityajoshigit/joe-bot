@@ -6,8 +6,9 @@ import { ApplicationFormContext } from "../context/ApplicationFormContext";
 const filter = createFilterOptions();
 
 function JobPositionInput(props) {
-
-  const { jobPositionList, setJobPosition } = React.useContext(ApplicationFormContext);
+  const { jobPositionList, setJobPosition } = React.useContext(
+    ApplicationFormContext
+  );
 
   const [value, setValue] = React.useState(null);
 
@@ -69,20 +70,21 @@ function JobPositionInput(props) {
   );
 
   return (
-    jobPositionList &&
-    <Autocomplete
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
-      freeSolo
-      id="jobPositionNameSelectList"
-      onChange={(event, newValue) => onChange(event, newValue)}
-      filterOptions={(options, params) => filterOptions(options, params)}
-      options={jobPositionList}
-      getOptionLabel={(option) => getOptionLabel(option)}
-      renderOption={(props, option) => renderOption(props, option)}
-      renderInput={(params) => renderInput(params)}
-    />
+    jobPositionList && (
+      <Autocomplete
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        freeSolo
+        id="jobPositionNameSelectList"
+        onChange={(event, newValue) => onChange(event, newValue)}
+        filterOptions={(options, params) => filterOptions(options, params)}
+        options={jobPositionList}
+        getOptionLabel={(option) => getOptionLabel(option)}
+        renderOption={(props, option) => renderOption(props, option)}
+        renderInput={(params) => renderInput(params)}
+      />
+    )
   );
 }
 

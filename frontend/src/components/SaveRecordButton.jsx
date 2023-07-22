@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { Button } from "@mui/material";
-import { ApplicationFormContext } from '../context/ApplicationFormContext';
+import { ApplicationFormContext } from "../context/ApplicationFormContext";
 
 function SaveRecordButton() {
   const { saveRecord } = React.useContext(ApplicationFormContext);
@@ -12,7 +12,7 @@ function SaveRecordButton() {
     >
       Save Record
     </Button>
-  )
+  );
 }
 
-export default SaveRecordButton
+export default SaveRecordButton;
