@@ -4,10 +4,7 @@ import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 
 const filter = createFilterOptions();
 
-function CompanyNameInput({
-  fireChangeEvent,
-  defaultValue
-}) {
+function CompanyNameInput(props) {
   const companyMetadata = [
     {
       name: "123",

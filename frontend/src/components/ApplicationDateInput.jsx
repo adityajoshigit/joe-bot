@@ -2,10 +2,7 @@ import React from "react";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-function ApplicationDateInput({
-  fireChangeEvent,
-  defaultValue
-}) {
+function ApplicationDateInput(props) {
   const today = new Date();
   const defaultDateValue = `${today.getFullYear()}-${
     today.getMonth() + 1

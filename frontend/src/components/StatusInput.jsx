@@ -6,10 +6,7 @@ const filter = createFilterOptions({
   ignoreCase: true,
 });
 
-function StatusInput({
-  fireChangeEvent,
-  defaultValue
-}) {
+function StatusInput(props) {
   const statusMetadata = [
     {
       name: "0",
