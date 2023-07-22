@@ -4,7 +4,7 @@ import ApplicationInputForm from './ApplicationInputForm'
 
 function FormContainer() {
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="lg">
       <ApplicationInputForm  />
     </Container>
 

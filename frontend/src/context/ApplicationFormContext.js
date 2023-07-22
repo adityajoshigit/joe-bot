@@ -122,14 +122,29 @@ export const ApplicationFormContextProvider = ({
       }
     },
   };
+  
+  const saveRecord = () => {
+    console.log("Record Needs To Be Saved!!!");
+    console.log(JSON.stringify(newApplicationRecord));
+  };
 
   React.useEffect(() => {
     const fetchMetadata = () => {
-      metadataLoader.getCompanies().then((data) => setComapanyList(data));
+      metadataLoader.getCompanies().then((data) => {
+        setComapanyList(data)
+      });
 
-      metadataLoader.getJobPositions().then((data) => setPositionList(data));
+      metadataLoader.getJobPositions().then((data) => {
+        setPositionList(data)
+      });
 
-      metadataLoader.getStatusValues().then((data) => setStatusList(data));
+      metadataLoader.getStatusValues().then((data) => {
+        setStatusList(data);
+        setNewApplicationRecord({
+          ...newApplicationRecord,
+          status: data[0]
+        });
+      });
     };
 
     fetchMetadata();
@@ -143,6 +158,7 @@ export const ApplicationFormContextProvider = ({
       setJobPosition: formFieldChangeHandler.handleSetJobPosition,
       setApplicationDate: formFieldChangeHandler.handleSetDate,
       setApplicationStatus: formFieldChangeHandler.handleSetStatus,
+      saveRecord,
       defaultDateValue,
       companyList,
       jobPositionList,

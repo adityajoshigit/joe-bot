@@ -12,8 +12,6 @@ function JobPositionInput(props) {
   const [value, setValue] = React.useState(null);
 
   const onChange = (event, newValue) => {
-    console.log(event);
-    console.log(newValue);
     if (typeof newValue === "string") {
       setJobPosition({
         title: newValue,
@@ -47,7 +45,6 @@ function JobPositionInput(props) {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
-    console.log(option);
     if (typeof option === "string") {
       return option;
     }

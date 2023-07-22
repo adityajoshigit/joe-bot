@@ -9,8 +9,6 @@ function CompanyNameInput(props) {
   const { companyList, setCompany } = React.useContext(ApplicationFormContext);
 
   const onChange = (event, newValue) => {
-    console.log(event);
-    console.log(newValue);
     if (typeof newValue === "string") {
       setCompany({
         title: newValue,
@@ -44,7 +42,6 @@ function CompanyNameInput(props) {
 
   const getOptionLabel = (option) => {
     // Value selected with enter, right from the input
-    console.log(option);
     if (typeof option === "string") {
       return option;
     }
